@@ -24,5 +24,8 @@ public class Inventory {
 	public int addItem(Item item) {
 		if (item == null) return 1;
 		if (items.Count >= maxSize) return 2;
+		
+		items.Add(item);
+		return 0;
 	}
 }
