@@ -1,0 +1,5 @@
+C:\_CS\_LudosStudio\Untitled-Game-Task1\ClassDesignTask\obj\Debug\net8.0\ClassDesignTask.GeneratedMSBuildEditorConfig.editorconfig
+C:\_CS\_LudosStudio\Untitled-Game-Task1\ClassDesignTask\obj\Debug\net8.0\ClassDesignTask.AssemblyInfoInputs.cache
+C:\_CS\_LudosStudio\Untitled-Game-Task1\ClassDesignTask\obj\Debug\net8.0\ClassDesignTask.AssemblyInfo.cs
+C:\_CS\_LudosStudio\Untitled-Game-Task1\ClassDesignTask\obj\Debug\net8.0\ClassDesignTask.csproj.CoreCompileInputs.cache
+C:\_CS\_LudosStudio\Untitled-Game-Task1\ClassDesignTask\obj\Debug\net8.0\ClassDesignTask.sourcelink.json

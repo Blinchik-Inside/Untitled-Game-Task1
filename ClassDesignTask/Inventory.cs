@@ -2,7 +2,7 @@
 
 public class Inventory {
 	private int size;
-	private Item items[];
+	private Item[] items;
 
 	public Inventory() {
 		size = 10;
