@@ -19,6 +19,16 @@
             inventory = new Inventory();
         }
 
+        public Character(string newName, int newHP, int newEnd, int newForce, int newDex, int newInt) {
+            name = newName;
+            hp = newHP;
+            endurance = newEnd;
+            force = newForce;
+            dexterity = newDex;
+            intelligence = newInt;
+            inventory = new Inventory();
+        }
+
         public string getName() { return name; }
 
         public int getHP() { return hp; }
@@ -61,6 +71,11 @@
             setBaseStats();
             attackRadius = rad;
         }
+
+        public Knight(string newName, int newHP, int newEnd, int newForce, int newDex, int newInt, int rad) :
+                 base(newName, newHP, newEnd, newForce, newDex, newInt) {
+            attackRadius = rad;
+        }
     }
 
 
@@ -87,6 +102,11 @@
         }
         public Hunter(string newName, int num) : base(newName){
             setBaseStats();
+            arrows = num;
+        }
+
+        public Hunter(string newName, int newHP, int newEnd, int newForce, int newDex, int newInt, int num) :
+                 base(newName, newHP, newEnd, newForce, newDex, newInt) {
             arrows = num;
         }
     }
@@ -118,6 +138,12 @@
         }
         public Mage(string newName, int num) : base(newName) {
             setBaseStats();
+            maxMana = num;
+            currMana = maxMana;
+        }
+
+        public Mage(string newName, int newHP, int newEnd, int newForce, int newDex, int newInt, int num) :
+                 base(newName, newHP, newEnd, newForce, newDex, newInt) {
             maxMana = num;
             currMana = maxMana;
         }
