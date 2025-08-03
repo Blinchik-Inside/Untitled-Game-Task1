@@ -3,3 +3,10 @@ C:\_CS\_LudosStudio\Untitled-Game-Task1\ClassDesignTask\obj\Debug\net8.0\ClassDe
 C:\_CS\_LudosStudio\Untitled-Game-Task1\ClassDesignTask\obj\Debug\net8.0\ClassDesignTask.AssemblyInfo.cs
 C:\_CS\_LudosStudio\Untitled-Game-Task1\ClassDesignTask\obj\Debug\net8.0\ClassDesignTask.csproj.CoreCompileInputs.cache
 C:\_CS\_LudosStudio\Untitled-Game-Task1\ClassDesignTask\obj\Debug\net8.0\ClassDesignTask.sourcelink.json
+C:\_CS\_LudosStudio\Untitled-Game-Task1\ClassDesignTask\bin\Debug\net8.0\ClassDesignTask.deps.json
+C:\_CS\_LudosStudio\Untitled-Game-Task1\ClassDesignTask\bin\Debug\net8.0\ClassDesignTask.dll
+C:\_CS\_LudosStudio\Untitled-Game-Task1\ClassDesignTask\bin\Debug\net8.0\ClassDesignTask.pdb
+C:\_CS\_LudosStudio\Untitled-Game-Task1\ClassDesignTask\obj\Debug\net8.0\ClassDesignTask.dll
+C:\_CS\_LudosStudio\Untitled-Game-Task1\ClassDesignTask\obj\Debug\net8.0\refint\ClassDesignTask.dll
+C:\_CS\_LudosStudio\Untitled-Game-Task1\ClassDesignTask\obj\Debug\net8.0\ClassDesignTask.pdb
+C:\_CS\_LudosStudio\Untitled-Game-Task1\ClassDesignTask\obj\Debug\net8.0\ref\ClassDesignTask.dll

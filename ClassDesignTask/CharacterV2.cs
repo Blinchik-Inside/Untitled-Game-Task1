@@ -22,23 +22,32 @@
         private int currMana;
 
         public Character2() {
-            name = "NoName";
+            this.name = "NoName";
+            setStats(KNIGHT_ID, 16, 15, 17, 10, 8);     // Knight by defailt
             inventory = new Inventory();
         }
 
         public Character2(string newName) { 
             name = newName;
+            setStats(KNIGHT_ID, 16, 15, 17, 10, 8);     // Knight by default
             inventory = new Inventory();
         }
 
-        public Character2(string newName, int newHP, int newEnd, int newForce, int newDex, int newInt) {
+        public Character2(string newName, int classID) {
             name = newName;
+            if (classID == KNIGHT_ID) setStats(KNIGHT_ID, 16, 15, 17, 10, 8);
+            if (classID == HUNTER_ID) setStats(HUNTER_ID, 13, 12, 11, 17, 10);
+            if (classID == MAGE_ID)   setStats(HUNTER_ID, 10, 10, 8, 12, 18);
+            inventory = new Inventory();
+        }
+
+        private void setStats(int newClassID, int newHP, int newEnd, int newForce, int newDex, int newInt) {
+            classID = newClassID;
             hp = newHP;
             endurance = newEnd;
             force = newForce;
             dexterity = newDex;
             intelligence = newInt;
-            inventory = new Inventory();
         }
 
         public string getName() { return name; }
