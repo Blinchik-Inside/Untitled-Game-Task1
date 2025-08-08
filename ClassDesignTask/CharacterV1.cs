@@ -1,6 +1,7 @@
 ﻿namespace ClassDesignTask
 {
-    public class Character {
+    public class Character 
+    {
         protected string name;
         protected int hp;
         protected int endurance;
@@ -9,17 +10,20 @@
         protected int intelligence;
         protected Inventory inventory;
 
-        public Character() {
+        public Character() 
+        {
             name = "NoName";
             inventory = new Inventory();
         }
 
-        public Character(string newName) { 
+        public Character(string newName) 
+        { 
             name = newName;
             inventory = new Inventory();
         }
 
-        public Character(string newName, int newHP, int newEnd, int newForce, int newDex, int newInt) {
+        public Character(string newName, int newHP, int newEnd, int newForce, int newDex, int newInt) 
+        {
             name = newName;
             hp = newHP;
             endurance = newEnd;
@@ -29,32 +33,42 @@
             inventory = new Inventory();
         }
 
-        public string getName() { return name; }
+        public string GetName() { return name; }
 
-        public int getHP() { return hp; }
-        public void setHP(int newHP) { hp = newHP; }
+        public int GetHP() { return hp; }
+        public void SetHP(int newHP) { hp = newHP; }
 
-        public int getEndurance() { return endurance; }
-        public void setEndurance(int newEnd) { endurance = newEnd; }
+        public int GetEndurance() { return endurance; }
+        public void SetEndurance(int newEnd) { endurance = newEnd; }
 
-        public int getForce() { return force; }
-        public void setForce(int newForce) { force = newForce; }
+        public int GetForce() { return force; }
+        public void SetForce(int newForce) { force = newForce; }
 
-        public int getDexterity() { return dexterity; }
-        public void setDexterity(int newDex) { dexterity = newDex; }
+        public int GetDexterity() { return dexterity; }
+        public void SetDexterity(int newDex) { dexterity = newDex; }
 
-        public int getIntelligence() { return intelligence; }
-        public void setIntelligence(int newInt) { intelligence = newInt; }
+        public int GetIntelligence() { return intelligence; }
+        public void SetIntelligence(int newInt) { intelligence = newInt; }
 
-        public Inventory getInventory() { return inventory; }
+        public Inventory GetInventory() { return inventory; }
+
+        public void FlushChest(Inventory chest) 
+        {
+            foreach (Item item in chest.GetAllItems()) 
+            {
+                inventory.AddItem(item);
+            }
+        }
     }
 
 
     // Knight subclass
-    public class Knight : Character {
-        private int attackRadius;
+    public class Knight : Character 
+    {
+        private int _attackRadius;
         
-        private void setBaseStats() {
+        private void SetBaseStats() 
+        {
             hp = 16;
             endurance = 15;
             force = 17;
@@ -62,28 +76,46 @@
             intelligence = 8;
         }
         
-        public Knight() : base() {
-            setBaseStats();
-            attackRadius = 5;
+        public Knight() : base() 
+        {
+            SetBaseStats();
+            _attackRadius = 5;
         }
 
-        public Knight(int rad) : base() {
-            setBaseStats();
-            attackRadius = rad;
+        public Knight(int rad) : base() 
+        {
+            SetBaseStats();
+            _attackRadius = rad;
         }
 
         public Knight(string newName, int newHP, int newEnd, int newForce, int newDex, int newInt, int rad) :
-                 base(newName, newHP, newEnd, newForce, newDex, newInt) {
-            attackRadius = rad;
+                 base(newName, newHP, newEnd, newForce, newDex, newInt) 
+        {
+            _attackRadius = rad;
+        }
+
+        public int GetAttackRadius() {  return _attackRadius; }
+
+        public int Attack(int distance)
+        {
+            if (distance <= _attackRadius) return 0;
+            return 1;
+        }
+
+        public void ChangeAttackRadius(int newRadius) 
+        {
+            _attackRadius = newRadius;
         }
     }
 
 
     // Hunter subclass
-    public class Hunter : Character {
-        private int arrows;
+    public class Hunter : Character 
+    {
+        private int _arrows;
 
-        private void setBaseStats() { 
+        private void SetBaseStats() 
+        { 
             hp = 13;
             endurance = 12;
             force = 11;
@@ -91,33 +123,43 @@
             intelligence = 10;
         }
 
-        public Hunter() : base() {
-            setBaseStats();
-            arrows = 20;
+        public Hunter() : base() 
+        {
+            SetBaseStats();
+            _arrows = 20;
         }
 
-        public Hunter(int num) : base() {
-            setBaseStats();
-            arrows = num;
+        public Hunter(int num) : base() 
+        {
+            SetBaseStats();
+            _arrows = num;
         }
-        public Hunter(string newName, int num) : base(newName){
-            setBaseStats();
-            arrows = num;
+        public Hunter(string newName, int num) : base(newName)
+        {
+            SetBaseStats();
+            _arrows = num;
         }
 
         public Hunter(string newName, int newHP, int newEnd, int newForce, int newDex, int newInt, int num) :
-                 base(newName, newHP, newEnd, newForce, newDex, newInt) {
-            arrows = num;
+                 base(newName, newHP, newEnd, newForce, newDex, newInt) 
+        {
+            _arrows = num;
         }
+
+        public int GetNumberOfArrows() { return _arrows; }
+
+        public void ChangeNumberOfArrows(int newValue) { _arrows = newValue; }
     }
 
 
     // Mage subclass
-    public class Mage : Character {
-        private int maxMana;
-        private int currMana;
+    public class Mage : Character 
+    {
+        private int _maxMana;
+        private int _currMana;
 
-        private void setBaseStats() { 
+        private void SetBaseStats() 
+        { 
             hp = 13;
             endurance = 12;
             force = 11;
@@ -125,27 +167,54 @@
             intelligence = 10;
         }
 
-        public Mage() : base() {
-            setBaseStats();
-            maxMana = 10;
-            currMana = maxMana;
+        public Mage() : base() 
+        {
+            SetBaseStats();
+            _maxMana = 10;
+            _currMana = _maxMana;
         }
 
-        public Mage(int num) : base() { 
-            setBaseStats();
-            maxMana = num;
-            currMana = maxMana;
+        public Mage(int num) : base() 
+        { 
+            SetBaseStats();
+            _maxMana = num;
+            _currMana = _maxMana;
         }
-        public Mage(string newName, int num) : base(newName) {
-            setBaseStats();
-            maxMana = num;
-            currMana = maxMana;
+        public Mage(string newName, int num) : base(newName) 
+        {
+            SetBaseStats();
+            _maxMana = num;
+            _currMana = _maxMana;
         }
 
         public Mage(string newName, int newHP, int newEnd, int newForce, int newDex, int newInt, int num) :
-                 base(newName, newHP, newEnd, newForce, newDex, newInt) {
-            maxMana = num;
-            currMana = maxMana;
+                 base(newName, newHP, newEnd, newForce, newDex, newInt) 
+        {
+            _maxMana = num;
+            _currMana = _maxMana;
+        }
+
+        /*
+         * Returns an int code depending on succes of the operation:
+         *  - 0 when spell was cast succesfully and mana was used
+         *  - 1 when character doesn't have enough mana
+         */
+        public int UseMana(int cost) 
+        {
+            if (cost > _currMana) return 1;
+            _currMana -= cost;
+            return 0;
+        }
+
+        public void RestoreMana(int value)
+        {
+            _currMana += value;
+            _currMana = Math.Min( _currMana, _maxMana);
+        }
+
+        public void ChangeMaxMana(int newValue) 
+        {
+            _maxMana = newValue;
         }
     }
 }
