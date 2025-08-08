@@ -3,11 +3,11 @@ namespace ClassDesignTask
 {
 	public class Item
 	{
-		private int ID;
-		private string name;
+		private readonly int ID;
+		private readonly string name;
 		private int count;
-		private string description;
-		private int healingFactor;
+		private readonly string description;
+		private readonly int healingFactor;
 
 		public Item(int id, string name, string description)
 		{
