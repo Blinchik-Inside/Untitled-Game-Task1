@@ -3,48 +3,57 @@ namespace ClassDesignTask
 {
 	public class Item
 	{
-		private readonly int ID;
-		private readonly string name;
-		private int count;
-		private readonly string description;
-		private readonly int healingFactor;
+		private readonly int _id;
+		private readonly string _name;
+		private int _count;
+		private readonly string _description;
+		private readonly int _healingFactor;
 
 		public Item(int id, string name, string description)
 		{
-			this.ID = id;
-			this.name = name;
-			count = 1;
-			this.description = description;
-			healingFactor = 0;
+			_id = id;
+			_name = name;
+			_count = 1;
+			_description = description;
+			_healingFactor = 0;
 		}
 
 		public Item(int id, string name, string description, int healingFactor)
 		{
-			this.ID = id;
-			this.name = name;
-			count = 1;
-			this.description = description;
-			this.healingFactor = healingFactor;
+			_id = id;
+			_name = name;
+			_count = 1;
+			_description = description;
+			_healingFactor = healingFactor;
 		}
 
-		public Item(int id, string name, int count, string description, int healingFactor)
+        public Item(int id, string name, int count, string description)
+        {
+            _id = id;
+            _name = name;
+            _count = count;
+            _description = description;
+            _healingFactor = 0;
+        }
+
+        public Item(int id, string name, int count, string description, int healingFactor)
 		{
-			this.ID = id;
-			this.name = name;
-			this.count = count;
-			this.description = description;
-			this.healingFactor = healingFactor;
+			_id = id;
+			_name = name;
+			_count = count;
+			_description = description;
+			_healingFactor = healingFactor;
 		}
 
-		public int GetID() { return ID; }
-		public string GetName() { return name; }
+		public int GetID() { return _id; }
+		public string GetName() { return _name; }
 
-		public int GetCount() { return count; }
-		public void IncreaseCount(int val) { count = count + val; }
-		public void DecreaseCount(int val) { count = count - val; }
+		public int GetCount() { return _count; }
+		public void IncreaseCount(int val) { _count = _count + val; }
+		public void DecreaseCount(int val) { _count = _count - val; }
 
-		public String GetDescription() { return description; }
+		public String GetDescription() { return _description; }
 
-		public int GetHealingFactor() { return healingFactor; }
+		public int GetHealingFactor() { return _healingFactor; }
 	}
 }

@@ -22,7 +22,11 @@ namespace ClassDesignTask
 		public int GetMaxSize() { return _maxSize; }
 		public int GetCurrSize() { return _items.Count; }
 
-		public Item GetItem(int index) { return _items[index]; }
+		public Item? GetItem(int index) 
+		{
+			if (index < 0 || index >= GetCurrSize()) return null;
+			return _items[index]; 
+		}
 		public List<Item> GetAllItems() { return _items; }
 
 		/*
@@ -38,7 +42,7 @@ namespace ClassDesignTask
 
 			for (int i = 0; i < _items.Count; i++)
 			{
-				if (_items[i].GetID == item.GetID)
+				if (_items[i].GetID() == item.GetID())
 				{
 					// An identical item already exists in the inventory, just increase its count. 
 					_items[i].IncreaseCount(item.GetCount());
@@ -82,14 +86,18 @@ namespace ClassDesignTask
 			return 0;
 		}
 
-		public void PrintInventory()
+		public override string ToString()
 		{
-			if (_items.Count == 0) return;
+			if (_items.Count == 0) return "Storage is empty.";
+            string contents = "";
 
-			for (int i = 0; i < _items.Count; i++)
+            for (int i = 0; i < _items.Count; i++)
 			{
-				Console.WriteLine($"{i + 1}) {_items[i].GetName()}, {_items[i].GetDescription()}");
+				//Console.WriteLine($"{i + 1}) {_items[i].GetName()}, {_items[i].GetDescription()}");
+				contents += $"{i + 1}) {_items[i].GetName()}, {_items[i].GetDescription()}, quantity: {_items[i].GetCount()}\n";
 			}
+
+			return contents;
 		}
 	}
 }
