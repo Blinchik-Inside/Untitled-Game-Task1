@@ -3,6 +3,7 @@
     public class Character : Entity
     {
         protected int endurance;
+        protected int force;
         protected int dexterity;
         protected int intelligence;
 
@@ -11,15 +12,19 @@
         public Character(string newName) : base(newName) { }
 
         public Character(string newName, int newHP, int newEnd, int newForce, int newDex, int newInt) 
-                  : base(newName, newHP, newForce)
+                  : base(newName, newHP)
         {
             endurance = newEnd;
+            force = newForce;
             dexterity = newDex;
             intelligence = newInt;
         }
 
         public int GetEndurance() { return endurance; }
         public void SetEndurance(int newEnd) { endurance = newEnd; }
+
+        public int GetForce() { return force; }
+        public void SetForce(int newForce) { force = newForce; }
 
         public int GetDexterity() { return dexterity; }
         public void SetDexterity(int newDex) { dexterity = newDex; }
