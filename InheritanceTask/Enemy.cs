@@ -18,16 +18,6 @@ namespace InheritanceTask
         public int GetDamage() { return damage; }
         public void SetDamage(int newDamage) { damage = newDamage; }
 
-        public int GetDistanceFrom(Entity target) 
-        { 
-            if (target == null) return int.MaxValue;    // Returns "infinity", cannot attack air
-            if (target == this) return 0;               // Although maybe should be set to "infinity" as well
-
-            int xAxis = Math.Abs(this.GetXPosition() - target.GetXPosition());
-            int yAxis = Math.Abs(this.GetYPosition() - target.GetYPosition());
-            return (int)Math.Sqrt(Math.Pow(xAxis, 2) + Math.Pow(yAxis, 2));
-        }
-
         public Entity? GetClosestTarget(Entity[] entities) 
         {
             Entity? target = null;
@@ -131,10 +121,54 @@ namespace InheritanceTask
             return _crowdSize;                  // All stayed alive, but "max" hp reduced
         }
 
-        public int Attack(Entity target) 
+        public int CrowdAttack(Entity target) 
         { 
             int crowdDamage = damage * _crowdSize;
             return AttackEntity(target, crowdDamage);
+        }
+    }
+
+
+    public class Skeleton : Enemy
+    {
+        private int _safeDistance;
+        private int _maxDistance;
+
+        public Skeleton() : base()
+        {
+            _safeDistance = 10;
+            _maxDistance = 25;
+        }
+
+        public Skeleton(string newName) : base(newName)
+        {
+            _safeDistance = 10;
+            _maxDistance = 25;
+        }
+
+        public Skeleton(string newName, int newHP, int newDamage, int newSafeDistance, int newMaxDistance)
+             : base(newName, newHP, newDamage)
+        {
+            _safeDistance = newSafeDistance;
+            _maxDistance = newMaxDistance;
+        }
+
+        public int GetSafeDistance() { return _safeDistance; }
+        public void SetSafeDistance(int newSafeDistance) { _safeDistance = newSafeDistance; }
+
+        public int GetMaxDistance() { return _maxDistance; }
+        public void SetMaxDistance(int newMaxDistance) { _maxDistance = newMaxDistance; }
+
+        public int DistanceAttack(Entity target) 
+        {
+            if (target == null) return 1;                       // Target doesn't exist
+            int targetDistance = GetDistanceFrom(target);
+
+            if (targetDistance < _safeDistance) return 2;       // Skeleton needs to walk away before shooting
+            if (targetDistance > _maxDistance) return 3;        // Target too far, damage won't be dealt 
+
+            target.TakeDamage(damage);
+            return 0;
         }
     }
 }

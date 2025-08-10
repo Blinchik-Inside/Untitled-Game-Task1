@@ -66,5 +66,15 @@
             target.TakeDamage(damage);
             return 0;
         }
+
+        public int GetDistanceFrom(Entity target)
+        {
+            if (target == null) return int.MaxValue;    // Returns "infinity", cannot attack air
+            if (target == this) return 0;               // Although maybe should be set to "infinity" as well
+
+            int xAxis = Math.Abs(this.GetXPosition() - target.GetXPosition());
+            int yAxis = Math.Abs(this.GetYPosition() - target.GetYPosition());
+            return (int)Math.Sqrt(Math.Pow(xAxis, 2) + Math.Pow(yAxis, 2));
+        }
     }
 }
