@@ -38,8 +38,6 @@
         public int GetHP() { return hp; }
         public void SetHP(int newHP) { hp = newHP; }
 
-        public void TakeDamage(int damage) { hp = Math.Max(0, hp - damage); }
-
         public int[] GetMapPosition() { return mapPosition; }
         public void SetMapPosition(int x, int y) 
         {
@@ -51,6 +49,12 @@
 
         public int GetOrder() { return order; }
         public void SetOrder(int newOrder) { order = newOrder; }
+
+        public virtual int TakeDamage(int damage) 
+        { 
+            hp = Math.Max(0, hp - damage);
+            return hp;                          // If 0 is returned, the entity should be removed from the board
+        }
 
         public int AttackEntity (Entity target, int damage) 
         {

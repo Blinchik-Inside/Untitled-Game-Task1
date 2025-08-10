@@ -84,4 +84,57 @@ namespace InheritanceTask
             return 0;                                   // Successfully attacked
         }
     }
+
+
+    public class Goblin : Enemy
+    {
+        private int _crowdSize;
+        private int _currentHP;
+
+        public Goblin() : base()
+        {
+            _crowdSize = 3;
+        }
+
+        public Goblin(string newName) : base(newName)
+        {
+            _crowdSize = 3;
+        }
+
+        public Goblin(string newName, int newHP, int newDamage, int newCrowdSize)
+             : base(newName, newHP, newDamage)
+        {
+            _crowdSize = newCrowdSize;
+            _currentHP = newHP;
+        }
+
+        public int GetCrowdSize() { return _crowdSize; }
+        public void SetCrowdSize(int newCrowdSize) { _crowdSize = newCrowdSize; }
+
+        public override int TakeDamage(int damage) 
+        {
+            _currentHP -= damage;
+            if (_currentHP <= 0) 
+            {
+                _currentHP = hp;
+                _crowdSize -= 1;
+            }
+            return _currentHP;
+        }
+
+        public int TakeAreaDamage(int damage)   // All goblins in the group take the same damage, affecting their "max"
+        {
+            if (damage >= hp) return 0;         // 0 goblins remained alive
+            hp -= damage;
+            _currentHP -= damage;
+            
+            return _crowdSize;                  // All stayed alive, but "max" hp reduced
+        }
+
+        public int Attack(Entity target) 
+        { 
+            int crowdDamage = damage * _crowdSize;
+            return AttackEntity(target, crowdDamage);
+        }
+    }
 }
