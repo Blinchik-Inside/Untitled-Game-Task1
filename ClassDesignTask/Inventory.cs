@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Immutable;
 using System.Text;
 namespace ClassDesignTask
 {
 	public class Inventory
 	{
 		public int MaxSize { get; private set; }
-		public List<Item> Items { get;}
+		public IReadOnlyList<Item> Items { get;}
 
 		public Inventory(int size = 10)
 		{
