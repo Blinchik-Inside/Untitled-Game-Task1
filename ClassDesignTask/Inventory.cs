@@ -1,103 +1,73 @@
 ﻿using System;
 using System.Collections;
+using System.Text;
 namespace ClassDesignTask
 {
 	public class Inventory
 	{
-		private readonly int _maxSize;
-		private readonly List<Item> _items;
+		public int MaxSize { get; private set; }
+		public List<Item> Items { get;}
 
-		public Inventory()
+		public Inventory(int size = 10)
 		{
-			_maxSize = 10;
-			_items = [];
+			MaxSize = size;
+			Items = [];
 		}
 
-		public Inventory(int size)
+		public Item GetItem(int index) 
 		{
-			_maxSize = size;
-			_items = [];
+			if (index < 0 || index >= Items.Count) 
+				throw new ArgumentOutOfRangeException(nameof(index), "Index out of bounds");
+			return Items[index]; 
 		}
 
-		public int GetMaxSize() { return _maxSize; }
-		public int GetCurrSize() { return _items.Count; }
-
-		public Item? GetItem(int index) 
+		public void AddItem(Item item)
 		{
-			if (index < 0 || index >= GetCurrSize()) return null;
-			return _items[index]; 
-		}
-		public List<Item> GetAllItems() { return _items; }
+			if (Items.Count >= MaxSize)
+				throw new Exception("Storage is full");
 
-		/*
-		 * Returns an int code depending on succes of the operation:
-		 *  - 0 if an item was added successfully.
-		 *  - 1 if an item to be added is null.
-		 *  - 2 if there is not enough space for that item in the inventory.
-		 */
-		public int AddItem(Item item)
-		{
-			if (item == null) return 1;
-			if (_items.Count >= _maxSize) return 2;
-
-			for (int i = 0; i < _items.Count; i++)
+			for (int i = 0; i < Items.Count; i++)
 			{
-				if (_items[i].GetID() == item.GetID())
+				if (Items[i].Name.CompareTo(item.Name) == 0)
 				{
 					// An identical item already exists in the inventory, just increase its count. 
-					_items[i].IncreaseCount(item.GetCount());
-					return 0;
+					Items[i].ChangeItemCount(item.Count);
+					return;
 				}
 			}
 
-			_items.Add(item);
-			return 0;
+			Items.Add(item);
 		}
 
-		/*
-		 * Returns an int code depending on succes of the operation:
-		 *  - 0 if an item was removed successfully.
-		 *  - 1 if an item to be added is null.
-		 *  - 2 if the inventory is empty.
-		 *  - 3 if the item does not exist in the inventory.
-		 */
-		public int RemoveItem(Item item)
+		public void RemoveItem(Item item)
         {
-            if (item == null) return 1;
-            if (_items.Count == 0) return 2;
+			if (Items.Count == 0)
+				throw new Exception("Inventory is empty");
 
-            if (!_items.Contains(item))
-            {
-                return 3;
-            }
+			if (!Items.Contains(item))
+				throw new Exception("Item does not exist in the inventory");
 
-            _items.Remove(item);
-            return 0;
+            Items.Remove(item);
         }
-
-        public int TakeItem(Item item, int num)
-		{
-			if (item == null) return 1;
-			if (!_items.Contains(item)) return 3;
-
-			if (item.GetCount() <= num) return RemoveItem(item);
-
-			item.DecreaseCount(num);
-			return 0;
-		}
 
 		public override string ToString()
 		{
-			if (_items.Count == 0) return "Storage is empty.";
-            string contents = "";
+			if (Items.Count == 0) return "Storage is empty.";
+            StringBuilder contents = new StringBuilder();
 
-            for (int i = 0; i < _items.Count; i++)
+            for (int i = 0; i < Items.Count; i++)
 			{
-				//Console.WriteLine($"{i + 1}) {_items[i].GetName()}, {_items[i].GetDescription()}");
-				contents += $"{i + 1}) {_items[i].GetName()}, {_items[i].GetDescription()}, quantity: {_items[i].GetCount()}\n";
-			}
+				contents.Append(i + 1);
+				contents.Append(") ");
+				contents.Append(Items[i].Name);
+				contents.Append(", ");
+                contents.Append(Items[i].Description);
+                contents.Append(", quantity: ");
+				contents.Append(Items[i].Count);
+                contents.Append('\n');
+            }
 
-			return contents;
+			return contents.ToString();
 		}
 	}
 }
