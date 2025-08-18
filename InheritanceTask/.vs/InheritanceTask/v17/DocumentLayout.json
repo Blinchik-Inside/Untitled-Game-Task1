@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\_CS\\_LudosStudio\\Untitled-Game-Task1\\InheritanceTask\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D028433A-3DE2-423A-A1BE-2107F3EDECAF}|InheritanceTask.csproj|c:\\_cs\\_ludosstudio\\untitled-game-task1\\inheritancetask\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D028433A-3DE2-423A-A1BE-2107F3EDECAF}|InheritanceTask.csproj|solutionrelative:character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D028433A-3DE2-423A-A1BE-2107F3EDECAF}|InheritanceTask.csproj|c:\\_cs\\_ludosstudio\\untitled-game-task1\\inheritancetask\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D028433A-3DE2-423A-A1BE-2107F3EDECAF}|InheritanceTask.csproj|solutionrelative:enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,8 +15,8 @@
       "RelativeMoniker": "D:0:0:{D028433A-3DE2-423A-A1BE-2107F3EDECAF}|InheritanceTask.csproj|solutionrelative:entity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D028433A-3DE2-423A-A1BE-2107F3EDECAF}|InheritanceTask.csproj|c:\\_cs\\_ludosstudio\\untitled-game-task1\\inheritancetask\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D028433A-3DE2-423A-A1BE-2107F3EDECAF}|InheritanceTask.csproj|solutionrelative:character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D028433A-3DE2-423A-A1BE-2107F3EDECAF}|InheritanceTask.csproj|c:\\_cs\\_ludosstudio\\untitled-game-task1\\inheritancetask\\gamestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D028433A-3DE2-423A-A1BE-2107F3EDECAF}|InheritanceTask.csproj|solutionrelative:gamestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,38 +30,52 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "GameStatus.cs",
+              "DocumentMoniker": "C:\\_CS\\_LudosStudio\\Untitled-Game-Task1\\InheritanceTask\\GameStatus.cs",
+              "RelativeDocumentMoniker": "GameStatus.cs",
+              "ToolTip": "C:\\_CS\\_LudosStudio\\Untitled-Game-Task1\\InheritanceTask\\GameStatus.cs",
+              "RelativeToolTip": "GameStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-18T12:29:58.052Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Entity.cs",
               "DocumentMoniker": "C:\\_CS\\_LudosStudio\\Untitled-Game-Task1\\InheritanceTask\\Entity.cs",
               "RelativeDocumentMoniker": "Entity.cs",
               "ToolTip": "C:\\_CS\\_LudosStudio\\Untitled-Game-Task1\\InheritanceTask\\Entity.cs",
               "RelativeToolTip": "Entity.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAowE0AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-09T17:55:21.319Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Character.cs",
               "DocumentMoniker": "C:\\_CS\\_LudosStudio\\Untitled-Game-Task1\\InheritanceTask\\Character.cs",
               "RelativeDocumentMoniker": "Character.cs",
               "ToolTip": "C:\\_CS\\_LudosStudio\\Untitled-Game-Task1\\InheritanceTask\\Character.cs",
               "RelativeToolTip": "Character.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAADwvxMAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-09T17:42:55.101Z"
+              "WhenOpened": "2025-08-09T17:42:55.101Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Enemy.cs",
               "DocumentMoniker": "C:\\_CS\\_LudosStudio\\Untitled-Game-Task1\\InheritanceTask\\Enemy.cs",
               "RelativeDocumentMoniker": "Enemy.cs",
               "ToolTip": "C:\\_CS\\_LudosStudio\\Untitled-Game-Task1\\InheritanceTask\\Enemy.cs",
               "RelativeToolTip": "Enemy.cs",
-              "ViewState": "AgIAAI4AAAAAAAAAAAAuwKAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFwAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-09T20:19:12.475Z",
               "EditorCaption": ""

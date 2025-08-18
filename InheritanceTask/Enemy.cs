@@ -2,56 +2,24 @@
 
 namespace InheritanceTask
 {
-    public class Enemy : Entity
+    public abstract class Enemy : Entity
     {
         protected int damage;
 
-        public Enemy() : base() { }
-
-        public Enemy(string newName) : base(newName) { }
-        public Enemy(string newName, int newHP, int newDamage)
-                  : base(newName, newHP)
+        public Enemy(string newName, int newHP, int newDamage, int x = 0, int y=0)
+                  : base(newName, newHP, x, y)
         {
             damage = newDamage;
         }
 
         public int GetDamage() { return damage; }
         public void SetDamage(int newDamage) { damage = newDamage; }
-
-        public Entity? GetClosestTarget(Entity[] entities) 
-        {
-            Entity? target = null;
-            foreach (Entity entity in entities) 
-            {
-                int minDistance = int.MaxValue;
-                if (entity == this) continue;
-                if (entity.GetType() != typeof(Enemy)) continue;
-
-                int currDistance = GetDistanceFrom(entity);
-                if (currDistance < minDistance)
-                { 
-                    minDistance = currDistance;
-                    target = entity;
-                }
-            }
-            return target;
-        }
     }
 
 
     public class Orc : Enemy 
     {
         private int _attackRadius;
-
-        public Orc() : base()
-        {
-            _attackRadius = 2;
-        }
-
-        public Orc(string newName) : base(newName)
-        {
-            _attackRadius = 2;
-        }
 
         public Orc (string newName, int newHP, int newDamage, int newRadius)
              : base(newName, newHP, newDamage)
@@ -80,16 +48,6 @@ namespace InheritanceTask
     {
         private int _crowdSize;
         private int _currentHP;
-
-        public Goblin() : base()
-        {
-            _crowdSize = 3;
-        }
-
-        public Goblin(string newName) : base(newName)
-        {
-            _crowdSize = 3;
-        }
 
         public Goblin(string newName, int newHP, int newDamage, int newCrowdSize)
              : base(newName, newHP, newDamage)
@@ -133,18 +91,6 @@ namespace InheritanceTask
     {
         private int _safeDistance;
         private int _maxDistance;
-
-        public Skeleton() : base()
-        {
-            _safeDistance = 10;
-            _maxDistance = 25;
-        }
-
-        public Skeleton(string newName) : base(newName)
-        {
-            _safeDistance = 10;
-            _maxDistance = 25;
-        }
 
         public Skeleton(string newName, int newHP, int newDamage, int newSafeDistance, int newMaxDistance)
              : base(newName, newHP, newDamage)

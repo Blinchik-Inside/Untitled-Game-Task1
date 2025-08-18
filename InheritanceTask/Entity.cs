@@ -1,80 +1,39 @@
 ﻿namespace InheritanceTask
 {
-    public class Entity
+    public abstract class Entity
     {
-        protected string name;
-        protected int hp;
-        protected int order;
-        protected int[] mapPosition;
-        
-        public Entity()
+        public string Name { get; }
+        public int HP { get; protected set; }
+        public int Order { get; protected set; }
+        public int XPosition { get; protected set; }
+        public int YPosition { get; protected set; }
+
+        public Entity(string newName, int newHP, int x=0, int y=0)
         {
-            name = "NoName";
-            mapPosition = [0, 0];
+            Name = newName;
+            HP = newHP;
+            XPosition = x;
+            YPosition = y;
         }
 
-        public Entity(string newName)
+        public abstract void TakeDamage(int damage);    // Implement in subclasses
+
+        public void AttackEntity (Entity target, int damage) 
         {
-            name = newName;
-            mapPosition = [0, 0];
-        }
-
-        public Entity(string newName, int newHP)
-        {
-            name = newName;
-            hp = newHP;
-            mapPosition = [0, 0];
-        }
-
-        public Entity(string newName, int newHP, int x, int y)
-        {
-            name = newName;
-            hp = newHP;
-            mapPosition = [x, y];
-        }
-
-        public string GetName() { return name; }
-
-        public int GetHP() { return hp; }
-        public void SetHP(int newHP) { hp = newHP; }
-
-        public int[] GetMapPosition() { return mapPosition; }
-        public void SetMapPosition(int x, int y) 
-        {
-            mapPosition[0] = x;
-            mapPosition[1] = y;
-        }
-        public int GetXPosition() { return mapPosition[0]; }
-        public int GetYPosition() { return mapPosition[1]; }
-
-        public int GetOrder() { return order; }
-        public void SetOrder(int newOrder) { order = newOrder; }
-
-        public virtual int TakeDamage(int damage) 
-        { 
-            hp = Math.Max(0, hp - damage);
-            return hp;                          // If 0 is returned, the entity should be removed from the board
-        }
-
-        public int AttackEntity (Entity target, int damage) 
-        {
-            if (target == null) return 1;                           // Can't attack nonexisten target
             if (target.GetType() != typeof(Character) &&
-                target.GetType() != typeof(Enemy)) return 2;        // Can't attack non-character or non-enemy entities
-            if (target == this) return 3;                           // Can't attack self
+                target.GetType() != typeof(Enemy))
+                throw new Exception("Can't attack non-character or non-enemy entities");
+
+            if (target == this) 
+                throw new Exception("Can't attack self");
 
             target.TakeDamage(damage);
-            return 0;
         }
 
-        public int GetDistanceFrom(Entity target)
+        public void MoveBy(int xMove, int yMove) 
         {
-            if (target == null) return int.MaxValue;    // Returns "infinity", cannot attack air
-            if (target == this) return 0;               // Although maybe should be set to "infinity" as well
-
-            int xAxis = Math.Abs(this.GetXPosition() - target.GetXPosition());
-            int yAxis = Math.Abs(this.GetYPosition() - target.GetYPosition());
-            return (int)Math.Sqrt(Math.Pow(xAxis, 2) + Math.Pow(yAxis, 2));
+            XPosition += xMove;
+            YPosition += yMove;
         }
     }
 }
