@@ -4,16 +4,18 @@ namespace InheritanceTask
 {
     public abstract class Enemy : Entity
     {
-        protected int damage;
+        public int Damage { get; protected set; }
 
         public Enemy(string newName, int newHP, int newDamage, int x = 0, int y=0)
                   : base(newName, newHP, x, y)
         {
-            damage = newDamage;
+            Damage = newDamage;
         }
 
-        public int GetDamage() { return damage; }
-        public void SetDamage(int newDamage) { damage = newDamage; }
+        public override void TakeDamage(int damage)
+        {
+            HP = Math.Min(HP - damage, 0);
+        }
     }
 
 
@@ -21,8 +23,8 @@ namespace InheritanceTask
     {
         private int _attackRadius;
 
-        public Orc (string newName, int newHP, int newDamage, int newRadius)
-             : base(newName, newHP, newDamage)
+        public Orc(string newName, int newHP, int newDamage, int newRadius, int x=0, int y=0)
+             : base(newName, newHP, newDamage, x, y)
         {
             _attackRadius = newRadius;
         }
@@ -31,90 +33,79 @@ namespace InheritanceTask
         public void SetAttackRadius(int newRadius) { _attackRadius = newRadius; }
 
 
-        public int PowerAttack(Entity[] entities) 
+        public void PowerAttack() 
         { 
-            Entity? target = GetClosestTarget(entities);
-            if (target == null) return 1;               // No valid target available, all Characters are eliminated
-            int distance = GetDistanceFrom(target);
-            if (distance > _attackRadius) return 2;     // The closest valid target is too far, need to shorten distance
-
-            target.TakeDamage(damage);
-            return 0;                                   // Successfully attacked
+            // Some logic to get the closest target, etc
         }
     }
 
 
     public class Goblin : Enemy
     {
-        private int _crowdSize;
-        private int _currentHP;
+        public int CrowdSize { get; protected set; }
+        public int CurrentHP {  get; protected set; }   // Only one goblin from the crowd is attacked at a time
+                                                        // Or all will be attacked when in area damage
 
-        public Goblin(string newName, int newHP, int newDamage, int newCrowdSize)
-             : base(newName, newHP, newDamage)
+        public Goblin(string newName, int newHP, int newDamage, int newCrowdSize, int x=0, int y=0)
+             : base(newName, newHP, newDamage, x, y)
         {
-            _crowdSize = newCrowdSize;
-            _currentHP = newHP;
+            CrowdSize = newCrowdSize;
+            CurrentHP = newHP;
         }
 
-        public int GetCrowdSize() { return _crowdSize; }
-        public void SetCrowdSize(int newCrowdSize) { _crowdSize = newCrowdSize; }
-
-        public override int TakeDamage(int damage) 
+        public override void TakeDamage(int damage) 
         {
-            _currentHP -= damage;
-            if (_currentHP <= 0) 
+            CurrentHP -= damage;
+            if (CurrentHP <= 0) 
             {
-                _currentHP = hp;
-                _crowdSize -= 1;
+                CurrentHP = HP;
+                CrowdSize -= 1;
             }
-            return _currentHP;
         }
 
-        public int TakeAreaDamage(int damage)   // All goblins in the group take the same damage, affecting their "max"
+        public void TakeAreaDamage(int damage)   // All goblins in the group take the same damage, affecting their "max" (imperfect logic but fine for now)
         {
-            if (damage >= hp) return 0;         // 0 goblins remained alive
-            hp -= damage;
-            _currentHP -= damage;
-            
-            return _crowdSize;                  // All stayed alive, but "max" hp reduced
+            if (damage >= HP) 
+            {
+                CrowdSize = 0;      // All goblins are eliminated
+            }
+            HP -= damage;
+            CurrentHP -= damage;
         }
 
-        public int CrowdAttack(Entity target) 
+        public void CrowdAttack(Entity target) 
         { 
-            int crowdDamage = damage * _crowdSize;
-            return AttackEntity(target, crowdDamage);
+            int crowdDamage = Damage * CrowdSize;
+            AttackEntity(target, crowdDamage);
         }
     }
 
 
     public class Skeleton : Enemy
     {
-        private int _safeDistance;
-        private int _maxDistance;
+        public int MinDistance { get; protected set; }
+        public int MaxDistance { get; protected set; }
 
-        public Skeleton(string newName, int newHP, int newDamage, int newSafeDistance, int newMaxDistance)
-             : base(newName, newHP, newDamage)
+        public Skeleton(string newName, int newHP, int newDamage, int newMinDistance, int newMaxDistance, int x=0, int y=0)
+             : base(newName, newHP, newDamage, x, y)
         {
-            _safeDistance = newSafeDistance;
-            _maxDistance = newMaxDistance;
+            MinDistance = newMinDistance;
+            MaxDistance = newMaxDistance;
         }
 
-        public int GetSafeDistance() { return _safeDistance; }
-        public void SetSafeDistance(int newSafeDistance) { _safeDistance = newSafeDistance; }
-
-        public int GetMaxDistance() { return _maxDistance; }
-        public void SetMaxDistance(int newMaxDistance) { _maxDistance = newMaxDistance; }
-
-        public int DistanceAttack(Entity target) 
+        public void DistanceAttack(Entity target) 
         {
-            if (target == null) return 1;                       // Target doesn't exist
-            int targetDistance = GetDistanceFrom(target);
+            double damageModifier = 1.0;
+            int distance = GameStatus.GetDistanceFrom(target, this.XPosition, this.YPosition);
 
-            if (targetDistance < _safeDistance) return 2;       // Skeleton needs to walk away before shooting
-            if (targetDistance > _maxDistance) return 3;        // Target too far, damage won't be dealt 
+            // Skeletons shoot arrows
+            // If distance from the target too small or too far, reduce the damage
+            if (distance < MinDistance)
+                damageModifier = (double) distance / MinDistance;
+            if (distance > MaxDistance)
+                damageModifier = (double) MaxDistance / distance;
 
-            target.TakeDamage(damage);
-            return 0;
+            target.TakeDamage((int) (Damage * damageModifier));
         }
     }
 }
