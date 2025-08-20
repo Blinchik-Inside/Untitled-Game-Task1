@@ -9,16 +9,21 @@
             entities = [];
         } 
 
+        // Add entity to the "board"
         public void AddEntity(Entity entity) 
-        { 
+        {
+            if (entity == null) throw new NullReferenceException(nameof(entity));
             entities.Add(entity);
         }
 
+        // Delete entity from the board
         public void RemoveEntity(Entity entity) 
-        { 
+        {
+            if (entity == null) throw new NullReferenceException(nameof(entity));
             entities.Remove(entity);
         }
 
+        // Check if enemies win
         public bool EnemiesWin() 
         {
             foreach (Entity entity in entities)
@@ -29,6 +34,7 @@
             return true;
         }
 
+        // Check if characters win
         public bool CharactersWin()
         {
             foreach (Entity entity in entities)
@@ -39,15 +45,22 @@
             return true;
         }
 
+        // Finds distance between a given point and a target entity 
+        // Source is given through coordinates on the map instead of an entity
         public static int GetDistanceFrom(Entity target, int Xsource, int Ysource)
         {
+            if (target == null) throw new NullReferenceException(nameof(target));
+
             int xDistance = Math.Abs(Xsource - target.XPosition);
             int yDistance = Math.Abs(Ysource - target.YPosition);
             return (int)Math.Sqrt(Math.Pow(xDistance, 2) + Math.Pow(yDistance, 2));
         }
 
+        // Finds the closest valid to attack entity from the map
         public Entity GetClosestTargetFrom(Entity source)
         {
+            if (source == null) throw new NullReferenceException(nameof(source));
+
             Entity? closest = null;
             foreach (Entity entity in entities)
             {
@@ -72,6 +85,7 @@
             return closest;
         }
 
+        // Area attack
         public void AttackAllInArea(int x, int y, int radius, int damage) 
         {
             foreach (Entity entity in entities) 

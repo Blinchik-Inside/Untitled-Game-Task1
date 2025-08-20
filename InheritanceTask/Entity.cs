@@ -20,9 +20,7 @@
 
         public void AttackEntity (Entity target, int damage) 
         {
-            if (target.GetType() != typeof(Character) &&
-                target.GetType() != typeof(Enemy))
-                throw new Exception("Can't attack non-character or non-enemy entities");
+            if (target == null) throw new NullReferenceException(nameof(target));
 
             if (target == this) 
                 throw new Exception("Can't attack self");

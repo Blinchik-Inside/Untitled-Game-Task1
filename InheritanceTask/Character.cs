@@ -1,4 +1,5 @@
-﻿using static System.Net.Mime.MediaTypeNames;
+﻿using System.Xml.Serialization;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace InheritanceTask
 {
@@ -71,6 +72,12 @@ namespace InheritanceTask
 
     public class Mage : Character 
     {
+        public enum Spell 
+        { 
+            Fireball, 
+            IceShock
+        }
+
         public int MaxMana { get; protected set; }
         public int CurrMana { get; protected set; }
 
@@ -81,14 +88,10 @@ namespace InheritanceTask
             CurrMana = newMana;
         }
 
-        public bool CastFireball()
+        public bool Cast(Spell spell)
         {
-            if (3 > CurrMana)
-                return false;
-            
-            // Some fireball casting logic??
-            CurrMana -= 3;
-            return true;
+            // Some casting logic
+            return false;
         }
 
         public void RestoreMana(int value)

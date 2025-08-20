@@ -21,17 +21,13 @@ namespace InheritanceTask
 
     public class Orc : Enemy 
     {
-        private int _attackRadius;
+        public int AttackRadius { get; protected set; }
 
         public Orc(string newName, int newHP, int newDamage, int newRadius, int x=0, int y=0)
              : base(newName, newHP, newDamage, x, y)
         {
-            _attackRadius = newRadius;
+            AttackRadius = newRadius;
         }
-
-        public int GetAttackRadius() { return _attackRadius; }
-        public void SetAttackRadius(int newRadius) { _attackRadius = newRadius; }
-
 
         public void PowerAttack() 
         { 
@@ -63,18 +59,10 @@ namespace InheritanceTask
             }
         }
 
-        public void TakeAreaDamage(int damage)   // All goblins in the group take the same damage, affecting their "max" (imperfect logic but fine for now)
-        {
-            if (damage >= HP) 
-            {
-                CrowdSize = 0;      // All goblins are eliminated
-            }
-            HP -= damage;
-            CurrentHP -= damage;
-        }
-
         public void CrowdAttack(Entity target) 
-        { 
+        {
+            if (target == null) throw new NullReferenceException(nameof(target));
+
             int crowdDamage = Damage * CrowdSize;
             AttackEntity(target, crowdDamage);
         }
@@ -95,6 +83,8 @@ namespace InheritanceTask
 
         public void DistanceAttack(Entity target) 
         {
+            if (target == null) throw new NullReferenceException(nameof(target));
+
             double damageModifier = 1.0;
             int distance = GameStatus.GetDistanceFrom(target, this.XPosition, this.YPosition);
 
