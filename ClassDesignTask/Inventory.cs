@@ -7,7 +7,7 @@ namespace ClassDesignTask
 	public class Inventory
 	{
 		public int MaxSize { get; private set; }
-		public IReadOnlyList<Item> Items { get;}
+		public IReadOnlyList<Item> Items { get;}	// Haven't changed this to Dictionary yet
 
 		public Inventory(int size = 10)
 		{
@@ -24,6 +24,8 @@ namespace ClassDesignTask
 
 		public void AddItem(Item item)
 		{
+			if (item == null) throw new ArgumentNullException(nameof(item));
+
 			if (Items.Count >= MaxSize)
 				throw new Exception("Storage is full");
 
@@ -40,11 +42,14 @@ namespace ClassDesignTask
 			Items.Add(item);
 		}
 
-		public void RemoveItem(Item item)
+        public void AddItem(Item item, int numberToAdd)
         {
-			if (Items.Count == 0)
-				throw new Exception("Inventory is empty");
+            // TODO: Implement how to add only part of the item's count
+			// Probably would me easier to make with dictionaries
+        }
 
+        public void RemoveItem(Item item)
+        {
 			if (!Items.Contains(item))
 				throw new Exception("Item does not exist in the inventory");
 
@@ -58,14 +63,7 @@ namespace ClassDesignTask
 
             for (int i = 0; i < Items.Count; i++)
 			{
-				contents.Append(i + 1);
-				contents.Append(") ");
-				contents.Append(Items[i].Name);
-				contents.Append(", ");
-                contents.Append(Items[i].Description);
-                contents.Append(", quantity: ");
-				contents.Append(Items[i].Count);
-                contents.Append('\n');
+				contents.Append($"{i + 1}) {Items[i].Name}, {Items[i].Description}, quantity: {Items.Count}\n");
             }
 
 			return contents.ToString();

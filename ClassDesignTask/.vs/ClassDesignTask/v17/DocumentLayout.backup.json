@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\_CS\\_LudosStudio\\Untitled-Game-Task1\\ClassDesignTask\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FFB165FF-682A-4304-B665-65C32B53536C}|ClassDesignTask.csproj|c:\\_cs\\_ludosstudio\\untitled-game-task1\\classdesigntask\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FFB165FF-682A-4304-B665-65C32B53536C}|ClassDesignTask.csproj|solutionrelative:character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FFB165FF-682A-4304-B665-65C32B53536C}|ClassDesignTask.csproj|c:\\_cs\\_ludosstudio\\untitled-game-task1\\classdesigntask\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FFB165FF-682A-4304-B665-65C32B53536C}|ClassDesignTask.csproj|solutionrelative:item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FFB165FF-682A-4304-B665-65C32B53536C}|ClassDesignTask.csproj|c:\\_cs\\_ludosstudio\\untitled-game-task1\\classdesigntask\\inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FFB165FF-682A-4304-B665-65C32B53536C}|ClassDesignTask.csproj|solutionrelative:inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FFB165FF-682A-4304-B665-65C32B53536C}|ClassDesignTask.csproj|c:\\_cs\\_ludosstudio\\untitled-game-task1\\classdesigntask\\inventorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FFB165FF-682A-4304-B665-65C32B53536C}|ClassDesignTask.csproj|solutionrelative:inventorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFB165FF-682A-4304-B665-65C32B53536C}|ClassDesignTask.csproj|c:\\_cs\\_ludosstudio\\untitled-game-task1\\classdesigntask\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFB165FF-682A-4304-B665-65C32B53536C}|ClassDesignTask.csproj|solutionrelative:item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFB165FF-682A-4304-B665-65C32B53536C}|ClassDesignTask.csproj|c:\\_cs\\_ludosstudio\\untitled-game-task1\\classdesigntask\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFB165FF-682A-4304-B665-65C32B53536C}|ClassDesignTask.csproj|solutionrelative:character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,56 +26,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Character.cs",
               "DocumentMoniker": "C:\\_CS\\_LudosStudio\\Untitled-Game-Task1\\ClassDesignTask\\Character.cs",
               "RelativeDocumentMoniker": "Character.cs",
               "ToolTip": "C:\\_CS\\_LudosStudio\\Untitled-Game-Task1\\ClassDesignTask\\Character.cs",
               "RelativeToolTip": "Character.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAADsAAAAAAAAAAAAqwFEAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-03T15:45:15.189Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "InventoryManager.cs",
               "DocumentMoniker": "C:\\_CS\\_LudosStudio\\Untitled-Game-Task1\\ClassDesignTask\\InventoryManager.cs",
               "RelativeDocumentMoniker": "InventoryManager.cs",
               "ToolTip": "C:\\_CS\\_LudosStudio\\Untitled-Game-Task1\\ClassDesignTask\\InventoryManager.cs",
               "RelativeToolTip": "InventoryManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-17T16:33:13.726Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Inventory.cs",
               "DocumentMoniker": "C:\\_CS\\_LudosStudio\\Untitled-Game-Task1\\ClassDesignTask\\Inventory.cs",
               "RelativeDocumentMoniker": "Inventory.cs",
               "ToolTip": "C:\\_CS\\_LudosStudio\\Untitled-Game-Task1\\ClassDesignTask\\Inventory.cs",
               "RelativeToolTip": "Inventory.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-03T16:12:00.211Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Item.cs",
               "DocumentMoniker": "C:\\_CS\\_LudosStudio\\Untitled-Game-Task1\\ClassDesignTask\\Item.cs",
               "RelativeDocumentMoniker": "Item.cs",
               "ToolTip": "C:\\_CS\\_LudosStudio\\Untitled-Game-Task1\\ClassDesignTask\\Item.cs",
               "RelativeToolTip": "Item.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-03T16:12:01.497Z",
               "EditorCaption": ""

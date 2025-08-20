@@ -35,10 +35,10 @@
             AttackRadius = newRadius;
         }
 
-        public int Attack(int distance)
+        public bool Attack(int distance)
         {
-            if (distance <= AttackRadius) return 0;
-            return 1;
+            if (distance <= AttackRadius) return true;
+            return false;
         }
     }
 
@@ -59,6 +59,13 @@
     // Mage subclass
     public class Mage : Character 
     {
+        // Just for now, otherwise would be its separate class storing spell cost and damage
+        public enum Spell 
+        { 
+            Fireball,
+            IceShock
+        }
+
         public int MaxMana { get; protected set; }
         public int CurrMana { get; protected set; }
 
@@ -69,12 +76,10 @@
             CurrMana = MaxMana;
         }
 
-        public void CastFireball() 
+        public bool Cast(Spell spell) 
         {
-            if (3 > CurrMana)
-                throw new Exception("Not enough mana.");
-            // Let the cost for fireball be 3 for now
-            CurrMana -= 3;
+            // Some logic in determening if the spell can be cast, returning if it can be cast 
+            return false;
         }
 
         public void RestoreMana(int value)
