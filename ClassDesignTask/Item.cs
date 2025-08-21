@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 namespace ClassDesignTask
 {
     public enum ItemType 
@@ -8,25 +9,37 @@ namespace ClassDesignTask
             Weapon
 		}
 	
+
     public class Item
     {
+        public int ID {  get; private set; }            // Item ID to simplify IEqualityComparer<> implementation
         public string Name { get; private set; }
         public string Description { get; private set; }
-        public int Count { get; private set; } 
         public ItemType Type { get; private set; }
 
-        public Item(string newName, string newDescription, ItemType newType, int newCount = 1) 
+        public Item(int newID, string newName, string newDescription, ItemType newType) 
         { 
+            ID = newID;
             Name = newName;
             Description = newDescription;
             Type = newType;
-            Count = newCount;
+        }
+    }
+
+
+    // Comparer allowing to use Item objects as keys in Dictionaries
+    public class ItemEqualityComparer : IEqualityComparer<Item> 
+    {
+        public bool Equals(Item item1, Item item2) 
+        { 
+            if (item1 == null || item2 == null) return false;
+            return item1.ID == item2.ID;
         }
 
-        // Can take both positive and negative values to update the count
-        public void ChangeItemCount(int change) 
-        { 
-            Count += change; 
+        public int GetHashCode(Item item)
+        {
+            if (item == null) throw new ArgumentNullException(nameof(item));
+            return item.ID.GetHashCode();
         }
     }
 }

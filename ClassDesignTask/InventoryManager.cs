@@ -8,9 +8,9 @@
             if (source == null) throw new NullReferenceException(nameof(source));
             if (receiver == null) throw new NullReferenceException(nameof(receiver));
 
-            foreach (Item item in source.Items)
+            foreach (Item item in source.Items.Keys)
             {
-                receiver.AddItem(item);
+                receiver.AddItem(item, source.Items[item]);
             }
         }
 
@@ -24,21 +24,21 @@
             if (item == null)       throw new NullReferenceException(nameof(item));
             // Several checks for easier recognition which pointer was null
 
-            if (!source.Items.Contains(item)) 
+            if (!source.Items.ContainsKey(item)) 
                 throw new Exception("Item does not exist in the source inventory");
 
-            if (item.Count <= numberToTake)     
+            if (source.Items[item] <= numberToTake)     
             { 
                 // Just add the item directly into the receiver and remove from the source,
                 // if item's count is <= than the asked amount
-                receiver.AddItem(item);
+                receiver.AddItem(item, source.Items[item]);
                 source.RemoveItem(item);
                 return;
             }
 
             // Otherwise only move part of the items and reduce the count in the source
             receiver.AddItem(item, numberToTake);
-            item.ChangeItemCount(-numberToTake);
+            source.Items[item] -= numberToTake;
         }
     }
 }

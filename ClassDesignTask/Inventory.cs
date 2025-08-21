@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Text;
 namespace ClassDesignTask
@@ -7,50 +8,34 @@ namespace ClassDesignTask
 	public class Inventory
 	{
 		public int MaxSize { get; private set; }
-		public IReadOnlyList<Item> Items { get;}	// Haven't changed this to Dictionary yet
+		public Dictionary<Item, int> Items { get; }		// Downside: can be affected by outside classes, maybe look into ImmutableDictionary??
 
 		public Inventory(int size = 10)
 		{
 			MaxSize = size;
-			Items = [];
+			Items = new Dictionary<Item, int>(new ItemEqualityComparer());
 		}
 
-		public Item GetItem(int index) 
+		public void AddItem(Item item, int numberToAdd)
 		{
-			if (index < 0 || index >= Items.Count) 
-				throw new ArgumentOutOfRangeException(nameof(index), "Index out of bounds");
-			return Items[index]; 
-		}
+			if (item == null) 
+				throw new ArgumentNullException(nameof(item));
 
-		public void AddItem(Item item)
-		{
-			if (item == null) throw new ArgumentNullException(nameof(item));
-
-			if (Items.Count >= MaxSize)
+			if (Items.Count >= MaxSize) 
 				throw new Exception("Storage is full");
 
-			for (int i = 0; i < Items.Count; i++)
-			{
-				if (Items[i].Name.CompareTo(item.Name) == 0)
-				{
-					// An identical item already exists in the inventory, just increase its count. 
-					Items[i].ChangeItemCount(item.Count);
-					return;
-				}
-			}
-
-			Items.Add(item);
-		}
-
-        public void AddItem(Item item, int numberToAdd)
-        {
-            // TODO: Implement how to add only part of the item's count
-			// Probably would me easier to make with dictionaries
+            if (!Items.TryGetValue(item, out int count))
+                Items.Add(item, 1);
+            else
+                Items[item] = count + numberToAdd;
         }
 
         public void RemoveItem(Item item)
         {
-			if (!Items.Contains(item))
+            if (item == null) 
+				throw new ArgumentNullException(nameof(item));
+
+			if (!Items.ContainsKey(item))
 				throw new Exception("Item does not exist in the inventory");
 
             Items.Remove(item);
@@ -61,9 +46,10 @@ namespace ClassDesignTask
 			if (Items.Count == 0) return "Storage is empty.";
             StringBuilder contents = new StringBuilder();
 
-            for (int i = 0; i < Items.Count; i++)
+			int i = 1;
+            foreach (Item item in Items.Keys)
 			{
-				contents.Append($"{i + 1}) {Items[i].Name}, {Items[i].Description}, quantity: {Items.Count}\n");
+				contents.Append($"{i}) {item.Name}, {item.Description}, quantity: {Items[item]}\n");
             }
 
 			return contents.ToString();
